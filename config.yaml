@@ -1,0 +1,15 @@
+video_path: "drone_car_video.mp4"
+frame_interval: 10
+skip_blurry: true
+blur_threshold: 100
+train_ratio: 0.7
+val_ratio: 0.2
+test_ratio: 0.1
+augmentation: true
+augmentation_times: 2
+lower_red1: [0, 150, 100]
+upper_red1: [10, 255, 255]
+lower_red2: [170, 150, 100]
+upper_red2: [180, 255, 255]
+min_box_size: 20
+version: "1.0"
