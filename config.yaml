@@ -1,15 +1,46 @@
 video_path: "drone_car_video.mp4"
+
+# 视频抽帧设置
 frame_interval: 10
+max_frames: -1
+
+# 模糊帧过滤（Laplacian 方差）
 skip_blurry: true
-blur_threshold: 100
-train_ratio: 0.7
-val_ratio: 0.2
-test_ratio: 0.1
-augmentation: true
-augmentation_times: 2
+blur_threshold: 100.0
+
+# 红色检测（HSV 阈值范围，OpenCV HSV: H in [0,179], S/V in [0,255]）
 lower_red1: [0, 150, 100]
 upper_red1: [10, 255, 255]
 lower_red2: [170, 150, 100]
 upper_red2: [180, 255, 255]
+
+# 形态学核大小（建议奇数）
+morph_kernel: 3
+
+# 标注质量过滤
 min_box_size: 20
-version: "1.0"
+min_norm: 0.0
+max_norm: 1.0
+coord_eps: 0.01
+allow_empty_labels: true
+
+# 类别
+class_id: 0
+names: ["car"]
+
+# 划分比例（train/val/test 之和会在程序内自动归一化到 1）
+train_ratio: 0.7
+val_ratio: 0.2
+test_ratio: 0.1
+split_seed: 42
+
+# 输出
+output_base_dir: "."
+zip_output: false
+
+# SFT：检测模型训练数据（从 YOLO labels 派生 jsonl）
+sft_enable: true
+sft_include_test: false
+sft_empty_answer: "none"
+sft_answer_sep: ";"
+sft_output_dir: "sft"
